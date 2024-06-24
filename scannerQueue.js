@@ -28,6 +28,6 @@ const queue = async.queue((task, callback) => {
     });
 }, 5); // Adjust the concurrency level based on your server capacity
 
-module.exports={
+module.exports = {
     queue
 }

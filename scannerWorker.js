@@ -5,7 +5,7 @@ const fs = require('fs');
 const path = require('path');
 
 const scanFiles = async (files, config) => {
-    const ClamScan = new NodeClam().init({...config});
+    const ClamScan = new NodeClam().init({ ...config });
 
     const clamscan = await ClamScan;
     const infectedFiles = [];
@@ -15,12 +15,11 @@ const scanFiles = async (files, config) => {
         const filePath = file.path;
 
         if (!fs.existsSync(filePath)) {
-            console.log(`File ${filePath} does not exist.`);
             continue;
         }
         const fileStream = fs.createReadStream(filePath);
         const scanResult = await clamscan.scanStream(fileStream);
-        
+
         // const scanResult = await clamscan.isInfected(filePath);
 
         if (scanResult.isInfected) {
@@ -36,10 +35,8 @@ const scanFiles = async (files, config) => {
     return infectedFiles;
 };
 
-scanFiles(workerData.files, workerData.config)
-    .then((infectedFiles) => {
-        parentPort.postMessage({ success: true, infectedFiles });
-})
-    .catch((error) => {
-        parentPort.postMessage({ success: false, error: error.message });
+scanFiles(workerData.files, workerData.config).then((infectedFiles) => {
+    parentPort.postMessage({ success: true, infectedFiles });
+}).catch((error) => {
+    parentPort.postMessage({ success: false, error: error.message });
 });
