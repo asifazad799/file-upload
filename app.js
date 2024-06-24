@@ -1,25 +1,17 @@
 const express = require('express');
 
 const appRouter = require('./routes');
-const { uploadLimiter } = require('./middleware');
+const { rateLimiter } = require('./middleware');
+const { connectToDatabase } = require('./services');
 const app = express();
 
+// connecting to db
+connectToDatabase();
+
 app.use(express.json());
-app.use(uploadLimiter);
+app.use(rateLimiter);
 
 app.use("/", appRouter);
-
-// app.post('/upload', uploadLimiter, upload.array('files'), (req, res) => {
-//     const files = req.files;
-
-//     queue.push({ files }, (error, result) => {
-//         if (error) {
-//             res.status(500).json({ message: 'Internal server error.', error: error.message });
-//         } else {
-//             res.status(200).json(result);
-//         }
-//     });
-// });
 
 app.use((error, req, res, next) => {
     res.status(500).json({ message: error.message || 'Internal Server Error' });
