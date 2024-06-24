@@ -1,5 +1,5 @@
 const calmScamCon = require('./calmScamConf');
 
-module.exports={
-    calmScamCon
+module.exports = {
+    ...calmScamCon
 }

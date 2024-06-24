@@ -2,9 +2,9 @@ const { Worker } = require('worker_threads');
 const async = require('async');
 const path = require('path');
 
-const { clamscanConfig } = require('./configs').calmScamCon;
+const { clamscanConfig } = require('./configs');
 
-const queue = async.queue((task, callback) => {
+const fileScannerQueue = async.queue((task, callback) => {
     const worker = new Worker(path.join(__dirname, 'scannerWorker.js'), {
         workerData: { files: task.files, config: clamscanConfig },
     });
@@ -29,5 +29,5 @@ const queue = async.queue((task, callback) => {
 }, 5); // Adjust the concurrency level based on your server capacity
 
 module.exports = {
-    queue
+    fileScannerQueue
 }

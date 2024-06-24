@@ -1,5 +1,6 @@
 # Node modules
 node_modules/
+final_uploads/*
 
 # Logs
 logs/
@@ -79,7 +80,7 @@ clamd.pid
 freshclam.pid
 
 # Ignore uploaded files
-uploads/
+uploads/*
 
 # Ignore specific configuration files
 config/
