@@ -14,7 +14,7 @@ RUN npm install --force
 COPY . .
 
 # Expose port 3000 (or the port your app uses)
-EXPOSE 3000
+EXPOSE 3010
 
 # Start the app using nodemon for hot-reloading in development
-CMD ["npx", "nodemon", "app.js"]
+CMD ["npm", "run", "dev"]

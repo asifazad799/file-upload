@@ -27,13 +27,13 @@ posts.post('/', upload.array('files'), (req, res) => {
     const files = req.files;
     const postDetails = req.body;
 
-    console.log(postDetails, 'hhey');
+    console.log(postDetails, 'hhey asif');
 
     fileScannerQueue.push({ files }, (error, result) => {
         if (error) {
             res.status(500).json({ message: 'Internal server error.', error: error.message });
         } else {
-            res.status(200).json({ user: userId, ...result });
+            res.status(200).json({ user: userId, hey:"heyaf jsj   7838gj", ...result });
         }
     });
 });

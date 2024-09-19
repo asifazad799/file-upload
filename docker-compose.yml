@@ -2,12 +2,14 @@ version: "3.8"
 
 services:
   app:
+    image: local/file_upload_app
     build:
       context: .
       dockerfile: Dockerfile
     volumes:
       - .:/app
       - /app/node_modules
+    container_name: file_upload_app
     ports:
       - "3010:3010"
     environment:
@@ -21,12 +23,14 @@ services:
     command: npm run dev
   mongo:
       image: mongo:5.0
+      container_name: file_upload_server
       ports:
         - "27017:27017"
       volumes:
         - mongo-data:/data/db
   clamav:
     image: clamav/clamav:latest
+    container_name: file_upload_antivirus
     ports:
       - "3310:3310"  # Expose the default ClamAV port
     volumes:
