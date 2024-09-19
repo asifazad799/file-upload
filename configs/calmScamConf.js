@@ -28,8 +28,19 @@ const clamscanConfig = {
     preference: 'clamdscan' // If clamdscan is found and active, it will be used by default
   }
 
+const clamdscanConfig = {
+  remove_infected: false, // Don't remove infected files
+  quarantine_infected: false, // Don't quarantine files
+  scan_recursively: true,
+  clamdscan: {
+      host: process.env.CLAMAV_HOST, // ClamAV host (or 'mongo' if inside Docker network)
+      port: process.env.CLAMAV_PORT, // Port where ClamAV is running
+      timeout: 60000, // 60 seconds timeout
+      local_fallback: false, // Don't use local binary as a fallback
+  },
+}
 module.exports = {
   clamscanConfig,
-  // clamavConfig
+  clamdscanConfig
 }
   

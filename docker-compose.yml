@@ -1,0 +1,39 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+      - /app/node_modules
+    ports:
+      - "3010:3010"
+    environment:
+      NODE_ENV: development
+      MONGO_URL: mongodb://mongo:27017/dea_usher_post # Add the MongoDB URL here
+      CLAMAV_HOST: clamav
+      CLAMAV_PORT: 3310
+    depends_on:
+      - mongo
+      - clamav
+    command: npm run dev
+  mongo:
+      image: mongo:5.0
+      ports:
+        - "27017:27017"
+      volumes:
+        - mongo-data:/data/db
+  clamav:
+    image: clamav/clamav:latest
+    ports:
+      - "3310:3310"  # Expose the default ClamAV port
+    volumes:
+      - clamav-data:/var/lib/clamav  # Persist ClamAV data
+    environment:
+      - CLAMD_SCAN=enabled
+
+volumes:
+  mongo-data:
+  clamav-data:

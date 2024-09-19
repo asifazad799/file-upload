@@ -2,11 +2,11 @@ const { Worker } = require('worker_threads');
 const async = require('async');
 const path = require('path');
 
-const { clamscanConfig } = require('./configs');
+const { clamdscanConfig } = require('./configs');
 
 const fileScannerQueue = async.queue((task, callback) => {
     const worker = new Worker(path.join(__dirname, 'scannerWorker.js'), {
-        workerData: { files: task.files, config: clamscanConfig },
+        workerData: { files: task.files, config: clamdscanConfig },
     });
 
     worker.on('message', (message) => {
