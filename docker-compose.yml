@@ -23,7 +23,7 @@ services:
     command: npm run dev
   mongo:
       image: mongo:5.0
-      container_name: file_upload_server
+      container_name: file_upload_db
       ports:
         - "27017:27017"
       volumes:
@@ -34,6 +34,7 @@ services:
     ports:
       - "3310:3310"  # Expose the default ClamAV port
     volumes:
+      - ./clamd.conf:/etc/clamav/clamd.conf  # Attach custom config file
       - clamav-data:/var/lib/clamav  # Persist ClamAV data
     environment:
       - CLAMD_SCAN=enabled

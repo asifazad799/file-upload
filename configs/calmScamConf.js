@@ -37,6 +37,7 @@ const clamdscanConfig = {
       port: process.env.CLAMAV_PORT, // Port where ClamAV is running
       timeout: 60000, // 60 seconds timeout
       local_fallback: false, // Don't use local binary as a fallback
+      max_file_size: 2 * 1024 * 1024 * 1024, // 2 GB in bytes
   },
 }
 module.exports = {
