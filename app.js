@@ -1,11 +1,10 @@
 const express = require('express');
 
-const appRouter = require('./routes');
+const appRouter = require('./module');
 const { rateLimiter } = require('./middleware');
 const { connectToDatabase } = require('./services');
 const app = express();
 
-// connecting to db
 connectToDatabase();
 
 app.use(express.json());
