@@ -1,6 +1,0 @@
-{
-    "watch": ["app.js", "./**/*.js"],
-    "ext": "js,json",
-    "ignore": ["./uploads/*"],
-    "verbose": true
-}

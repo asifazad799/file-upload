@@ -23,8 +23,8 @@ const postSchema = new mongoose.Schema(
     {
         image: { type: [String], },
         title: { type: String },
+        user_id: { type: Number },
         desc: { type: String },
-        auther: { type: Number, required: true }, // this will be changed with userId (ObjectId)
         rating: { type: ratingSchema }
     },
     { timestamps: true }

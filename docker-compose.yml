@@ -14,7 +14,7 @@ services:
       - "3010:3010"
     environment:
       NODE_ENV: development
-      MONGO_URL: mongodb://mongo:27017/dea_usher_post # Add the MongoDB URL here
+      MONGO_URL: mongodb://mongo:27017/idea_usher_post # Add the MongoDB URL here
       CLAMAV_HOST: clamav
       CLAMAV_PORT: 3310
     depends_on:
