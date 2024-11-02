@@ -3,26 +3,26 @@ const { createPost } = require('./operations');
 
 
 const getPost = async (req, res) => {
-    const userId = req?.query?.useId;
+    const userId = req?.query?.userId;
     const postId = req.params.postId;
 
     if (postId) {
         res.status(200).json({
-            user: userId,
+            user_id: userId,
             message: `post details for ${postId}`
         });
         return;
     }
 
     res.status(200).json({
-        user: userId,
+        user_id: userId,
         message: 'list of posts'
     })
 
 }
 
 const postPost = async (req, res) => {
-    const userId = req?.query?.useId;
+    const userId = req?.query?.userId;
     const files = req.files;
     const postDetails = req.body;
 
